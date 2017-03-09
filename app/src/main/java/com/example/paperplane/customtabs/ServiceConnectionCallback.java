@@ -1,7 +1,9 @@
 package com.example.paperplane.customtabs;
 
+import android.support.customtabs.CustomTabsClient;
+
 /**
- * Created by liuht on 2017/3/9.
+ * Created by liyanli on 2017/3/9.
  */
 
 public interface ServiceConnectionCallback {

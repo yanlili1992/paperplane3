@@ -1,13 +1,13 @@
 package com.example.paperplane.homepage;
 
+import com.example.paperplane.BasePresenter;
+import com.example.paperplane.BaseView;
 import com.example.paperplane.bean.GuokrHandpickNews;
-import com.example.paperplane.util.BasePresenter;
-import com.example.paperplane.util.BaseView;
 
 import java.util.ArrayList;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public interface GuokrContract {

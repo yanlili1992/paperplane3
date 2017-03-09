@@ -1,13 +1,18 @@
 package com.example.paperplane.customtabs;
 
+
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsClient;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.customtabs.CustomTabsServiceConnection;
+import android.support.customtabs.CustomTabsSession;
 
 import java.util.List;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class CustomTabActivityHelper implements ServiceConnectionCallback{

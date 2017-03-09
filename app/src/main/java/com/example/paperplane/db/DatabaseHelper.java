@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper{

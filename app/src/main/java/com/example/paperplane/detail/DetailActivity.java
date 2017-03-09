@@ -1,19 +1,19 @@
 package com.example.paperplane.detail;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
+import android.os.Bundle;
 
 import com.example.paperplane.R;
+import com.example.paperplane.bean.BeanType;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class DetailActivity extends AppCompatActivity{
 
-    private DetailFragment fragment;
+    private detailFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -21,14 +21,14 @@ public class DetailActivity extends AppCompatActivity{
         setContentView(R.layout.frame);
 
         if(savedInstanceState!=null){
-            fragment = (DetailFragment) getSupportFragmentManager().getFragment(savedInstanceState,"detailFragment");
+            fragment = (detailFragment) getSupportFragmentManager().getFragment(savedInstanceState,"detailFragment");
         }else{
-            fragment = new DetailFragment();
+            fragment = new detailFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
         }
 
         Intent intent = getIntent();
-        DetailPresenter presenter = new DetailPresenter(DetailActivity.this,fragment);
+        detailPresenter presenter = new detailPresenter(DetailActivity.this,fragment);
 
         presenter.setType((BeanType) intent.getSerializableExtra("type"));
         presenter.setId(intent.getIntExtra("id",0));

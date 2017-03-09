@@ -1,14 +1,14 @@
 package com.example.paperplane.detail;
 
-import android.support.v4.app.Fragment;
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
-import android.support.v4.media.MediaMetadataCompat;
+import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DecorContentParent;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,9 +21,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.Snackbar;
 
 
 import com.example.paperplane.R;
@@ -32,7 +29,7 @@ import com.bumptech.glide.Glide;
 import java.security.PublicKey;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class detailFragment extends Fragment implements detailContract.View{
@@ -172,7 +169,7 @@ public class detailFragment extends Fragment implements detailContract.View{
         webView.loadDataWithBaseURL("x-data://base",result,"text/html","utf-8",null);
     }
     @Override
-    public void showEesultWithoutBody(String url){webView.loadUrl(url);}
+    public void showResultWithoutBody(String url){webView.loadUrl(url);}
     @Override
     public void showCover(String url){
         Glide.with(context)
@@ -256,7 +253,7 @@ public class detailFragment extends Fragment implements detailContract.View{
     }
 
     //to change the title's font size of toolbar layout
-    private void setCollapsingToolbarLayoutTitle(String tilte){
+    private void setCollapsingToolbarLayoutTitle(String title){
         toolbarLayout.setTitle(title);
         toolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         toolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);

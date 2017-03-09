@@ -5,12 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.paperplane.R;
 import com.example.paperplane.homepage.DoubanFragment;
 import com.example.paperplane.homepage.GuokrFragment;
 import com.example.paperplane.homepage.ZhihuDailyFragment;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class MainPagerAdapter extends FragmentPagerAdapter {

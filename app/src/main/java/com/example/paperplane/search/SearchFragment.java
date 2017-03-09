@@ -1,9 +1,11 @@
 package com.example.paperplane.search;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -11,13 +13,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.paperplane.R;
 import com.example.paperplane.adapter.BookmarksAdapter;
+import com.example.paperplane.bean.BeanType;
 import com.example.paperplane.bean.DoubanMomentNews;
+import com.example.paperplane.bean.GuokrHandpickNews;
+import com.example.paperplane.bean.ZhihuDailyNews;
+import com.example.paperplane.interfaze.OnRecyclerViewOnClickListener;
 
 import java.util.ArrayList;
 
 /**
- * Created by liuht on 2017/3/6.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class SearchFragment extends Fragment implements SearchContract.View{

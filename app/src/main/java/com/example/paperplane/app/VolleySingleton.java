@@ -2,8 +2,12 @@ package com.example.paperplane.app;
 
 import android.content.Context;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 /**
- * Created by liuht on 2017/3/6.
+ * Created by liyanli on 2017/3/6.
  */
 
 public class VolleySingleton {
@@ -22,7 +26,7 @@ public class VolleySingleton {
     public RequestQueue getRequestQueue(){
         return this.requestQueue;
     }
-    public <T> void addRequestQueue(Request<T> req){
+    public <T> void addToRequestQueue(Request<T> req){
         getRequestQueue().add(req);
     }
 }

@@ -4,7 +4,7 @@ import android.app.Application;
 import android.support.v7.app.AppCompatDelegate;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class App extends Application {

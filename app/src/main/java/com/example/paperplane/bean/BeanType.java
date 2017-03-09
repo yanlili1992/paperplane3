@@ -1,7 +1,7 @@
 package com.example.paperplane.bean;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public enum BeanType {

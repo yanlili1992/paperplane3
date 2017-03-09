@@ -1,26 +1,27 @@
 package com.example.paperplane.adapter;
 
 import android.content.Context;
-import android.media.Image;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.support.v7.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.paperplane.R;
 import com.example.paperplane.bean.DoubanMomentNews;
 import com.example.paperplane.bean.GuokrHandpickNews;
 import com.example.paperplane.bean.ZhihuDailyNews;
 import com.example.paperplane.interfaze.OnRecyclerViewOnClickListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanlion 2017/3/8.
  */
 
 public class BookmarksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -58,35 +59,26 @@ public class BookmarksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.types = types;
     }
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        switch (viewType){
-            case TYPE_DOUBAN_NORMAL:
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case TYPE_ZHIHU_NORMAL:
             case TYPE_GUOKR_NORMAL:
-            case TYPE_ZHIHU_NORMAL:
-                return new NormalVIewHolder(inflater.inflate(R.layout.home_list_item_layout,parent,false),this.listener);
+            case TYPE_DOUBAN_NORMAL:
+                return new NormalViewHolder(inflater.inflate(R.layout.home_list_item_layout, parent, false), this.listener);
         }
-        return new WithTypeViewHolder(inflater.inflate(R.layout.bookmark_header,parent,false));
+        return new WithTypeViewHolder(inflater.inflate(R.layout.bookmark_header, parent, false));
     }
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position){
-        switch (types.get(position)){
-            case TYPE_ZHIHU_WITH_HEADER:
-                ((WithTypeViewHolder)holder).textViewType.setText("知乎日报");
-                break;
-            case TYPE_ZHIHU_NORMAL:
-                if(!zhihuList.isEmpty()){
-                    ZhihuDailyNews.Question q = zhihuList.get(position-1);
-                    Glide.with(context)
-                            .load(q.getTitle().get(0))
-                            .placeholder(R.drawable.placeholder)
-                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                            .error(R.drawable.placeholder)
-                            .centerCrop()
-                            .into(((NormalViewHolder)holder).imageView);
 
-                    ((NormalViewHolder)holder).textViewTitle.setText(q.getTitle());
-                }
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        switch (types.get(position)) {
+            case TYPE_ZHIHU_WITH_HEADER:
+
+                ((WithTypeViewHolder)holder).textViewType.setText(context.getResources().getString(R.string.zhihu_daily));
+
                 break;
+
             case TYPE_ZHIHU_NORMAL:
                 if (!zhihuList.isEmpty()) {
                     ZhihuDailyNews.Question q = zhihuList.get(position - 1);
@@ -158,38 +150,54 @@ public class BookmarksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             default:
                 break;
         }
+
     }
+
     @Override
-    public void getItemViewType(int position) {return types.get(position);}
+    public int getItemViewType(int position) {
+        return types.get(position);
+    }
+
     @Override
-    public int getItemCount(){
+    public int getItemCount() {
         return types.size();
     }
-    public void setItemListener(OnRecyclerViewOnClickListener listener){
+
+    public void setItemListener(OnRecyclerViewOnClickListener listener) {
         this.listener = listener;
     }
-    public class NormalViewHolder extends RecyclerVIew.ViewHolder implements View.OnClickListener{
+
+    public class NormalViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+
         ImageView imageView;
         TextView textViewTitle;
         OnRecyclerViewOnClickListener listener;
 
-        public NormalViewHolder(View itemView, OnRecyclerViewOnClickListener listener){
+        public NormalViewHolder(View itemView, OnRecyclerViewOnClickListener listener) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.imageViewCover);
             textViewTitle = (TextView) itemView.findViewById(R.id.textViewTitle);
             this.listener = listener;
             itemView.setOnClickListener(this);
         }
+
         @Override
-        public void onClick(View v){
-            if(listener!=null){
-                listener.OnItemClick(v.getLayoutPosition());
+        public void onClick(View v) {
+            if (listener != null) {
+                listener.OnItemClick(v,getLayoutPosition());
             }
         }
-        @Override
-        public WithTypeViewHolder(View itemView){
-            super(itemView);
-            textViewTitle = (TextView) itemView.findViewById(R.id.textViewType);
-        }
     }
-}
+
+    public class WithTypeViewHolder extends RecyclerView.ViewHolder{
+
+        TextView textViewType;
+
+        public WithTypeViewHolder(View itemView) {
+            super(itemView);
+            textViewType = (TextView) itemView.findViewById(R.id.textViewType);
+        }
+
+    }}
+

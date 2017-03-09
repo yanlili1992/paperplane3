@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="preference-v7-25.1.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/69e6e7105a24221ca229affaf59da6a3529d3012/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/69e6e7105a24221ca229affaf59da6a3529d3012/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/preference-v7/25.1.1/preference-v7-25.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

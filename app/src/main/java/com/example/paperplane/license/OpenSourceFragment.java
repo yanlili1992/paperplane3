@@ -1,8 +1,8 @@
 package com.example.paperplane.license;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -11,13 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
+import com.example.paperplane.R;
+
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
-public class OpenSourceFragment extends Fragment implements OpenSourceContract.View{
+public class OpenSourceFragment extends android.support.v4.app.Fragment
+        implements OpenSourceContract.View{
 
     private WebView webView;
+
     public OpenSourceFragment() {
         // requires an empty constructor
     }

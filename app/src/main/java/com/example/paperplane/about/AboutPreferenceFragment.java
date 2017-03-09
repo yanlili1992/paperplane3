@@ -10,7 +10,7 @@ import android.view.View;
 import com.example.paperplane.R;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class AboutPreferenceFragment extends PreferenceFragmentCompat

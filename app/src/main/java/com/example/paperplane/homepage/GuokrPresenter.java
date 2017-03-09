@@ -7,7 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.LocalBroadcastManager;
 
-import com.example.paperplane.bean.BeanType;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.example.paperplane.bean.GuokrHandpickNews;
 import com.example.paperplane.bean.StringModelImpl;
 import com.example.paperplane.db.DatabaseHelper;
@@ -15,15 +17,15 @@ import com.example.paperplane.detail.DetailActivity;
 import com.example.paperplane.interfaze.OnStringListener;
 import com.example.paperplane.service.CacheService;
 import com.example.paperplane.util.Api;
-import com.example.paperplane.util.BasePresenter;
-import com.example.paperplane.util.BaseView;
+import com.example.paperplane.bean.BeanType;
 import com.example.paperplane.util.NetworkState;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class GuokrPresenter implements GuokrContract.Presenter{
@@ -68,32 +70,32 @@ public class GuokrPresenter implements GuokrContract.Presenter{
         loadPosts();
     }
     @Override
-    public void loadPosts(){
+    public void loadPosts() {
         view.showLoading();
-        if(NetworkState.networkConnected(context)){
-            model.load(Api.GUOKR_ARTICLES, new OnStringListener(){
+        if (NetworkState.networkConnected(context)) {
+            model.load(Api.GUOKR_ARTICLES, new OnStringListener() {
                 @Override
-                public void onSuccess(String result){
+                public void onSuccess(String result) {
                     //由于果壳并没有按照日期加载的api,所以不存在加载指定日期内容的操作，当请求数据时一定是在进行刷新
                     list.clear();
-                    try{
-                        GuokrHandpickNews questions = gson.fromJson(result,GuokrHandpickNews.class);
-                        for(GuokrHandpickNews.result re: questions.getResult()){
+                    try {
+                        GuokrHandpickNews questions = gson.fromJson(result, GuokrHandpickNews.class);
+                        for (GuokrHandpickNews.result re : questions.getResult()) {
                             list.add(re);
-                            if(!queryIfIDExists(re.getId())){
-                                try{
+                            if (!queryIfIDExists(re.getId())) {
+                                try {
                                     db.beginTransaction();
                                     ContentValues values = new ContentValues();
                                     values.put("guokr_id", re.getId());
                                     values.put("guokr_news", gson.toJson(re));
                                     values.put("guokr_content", "");
-                                    values.put("guokr_time", (long)re.getDate_picked());
-                                    db.insert("Guokr",null,values);
+                                    values.put("guokr_time", (long) re.getDate_picked());
+                                    db.insert("Guokr", null, values);
                                     values.clear();
                                     db.setTransactionSuccessful();
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     e.printStackTrace();
-                                }finally {
+                                } finally {
                                     db.endTransaction();
                                 }
                             }
@@ -103,36 +105,39 @@ public class GuokrPresenter implements GuokrContract.Presenter{
                             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                         }
                         view.showResults(list);
-                    }catch (JsonSyntaxException e){
+                    } catch (JsonSyntaxException e) {
                         view.showError();
                     }
                     view.stopLoading();
                 }
+
                 @Override
-                public void onError(VolleyError error){
+                public void onError(VolleyError error) {
                     view.stopLoading();
                     view.showError();
                 }
             });
-        }else{
-            Cursor cursor = db.query("Guokr",null,null,null,null,null,null);
-            if(cursor.moveToFirst()){
-                GuokrHandpickNews.result result = gson.fromJson(cursor.getString(cursor.getColumnIndex("guokr_news")),GuokrHandpickNews.result.class);
-                list.add(result);
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
-        view.stopLoading();
-        view.showResults(list);
-        //当第一次安装应用，并且没有打开网络时。此时既无法网络加载，也无法本地加载
-        if(list.isEmpty()){
-            view.showError();
+        } else {
+            Cursor cursor = db.query("Guokr", null, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    GuokrHandpickNews.result result = gson.fromJson(cursor.getString(cursor.getColumnIndex("guokr_news")), GuokrHandpickNews.result.class);
+                    list.add(result);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            view.stopLoading();
+            view.showResults(list);
+            //当第一次安装应用，并且没有打开网络时。此时既无法网络加载，也无法本地加载
+            if (list.isEmpty()) {
+                view.showError();
+            }
         }
     }
     @Override
-    public void refresh(){
-        loadPosts();
-    }
+        public void refresh() {
+            loadPosts();
+        }
     private boolean queryIfIDExists(int id){
         Cursor cursor = db.query("Guokr",null,null,null,null,null,null);
         if(cursor.moveToFirst()){

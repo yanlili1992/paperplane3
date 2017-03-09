@@ -6,7 +6,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class KeepAliveService extends Service {
@@ -14,6 +14,6 @@ public class KeepAliveService extends Service {
     private static final Binder sBinder = new Binder();
 
     @Override
-    public IBinder onBind(Intent intent){return sBinder}
+    public IBinder onBind(Intent intent){return sBinder;}
 
 }

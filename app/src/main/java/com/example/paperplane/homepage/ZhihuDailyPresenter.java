@@ -34,7 +34,7 @@ import static android.R.attr.cropToPadding;
 //import static android.R.attr.format;
 
 /**
- * Created by liuht on 2017/3/6.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter{
@@ -102,8 +102,8 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter{
                             intent.putExtra("id", item.getId());
                             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                         }
-                        view.showesults(list);
-                    } catch (JSONException e) {
+                        view.showResults(list);
+                    } catch (JsonSyntaxException e) {
                         view.showError();
                     }
 

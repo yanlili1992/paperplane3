@@ -1,10 +1,13 @@
 package com.example.paperplane.innerbrowser;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.paperplane.R;
+
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class InnerBrowserActivity extends AppCompatActivity{

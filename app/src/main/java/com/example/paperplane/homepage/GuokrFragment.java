@@ -1,12 +1,17 @@
 package com.example.paperplane.homepage;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.paperplane.R;
 import com.example.paperplane.adapter.GuokrNewsAdapter;
 import com.example.paperplane.bean.GuokrHandpickNews;
 import com.example.paperplane.interfaze.OnRecyclerViewOnClickListener;
@@ -14,7 +19,7 @@ import com.example.paperplane.interfaze.OnRecyclerViewOnClickListener;
 import java.util.ArrayList;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class GuokrFragment extends Fragment implements GuokrContract.View{
@@ -24,7 +29,7 @@ public class GuokrFragment extends Fragment implements GuokrContract.View{
     private GuokrContract.Presenter presenter;
 
     //require an empty constructor
-    public GuokrFragment{}
+    public GuokrFragment(){}
     public static GuokrFragment newInstance(){return new GuokrFragment();}
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -41,7 +46,7 @@ public class GuokrFragment extends Fragment implements GuokrContract.View{
                 presenter.refresh();
             }
         });
-        return true;
+        return view;
     }
     @Override
     public void setPresenter(GuokrContract.Presenter presenter){
@@ -61,7 +66,7 @@ public class GuokrFragment extends Fragment implements GuokrContract.View{
     }
     @Override
     public void showError(){
-        Snackbar.make(refreshLayout,R.string.loaded_failed,Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(refreshLayout, R.string.loaded_failed, Snackbar.LENGTH_INDEFINITE)
                 .setAction("重试",new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
@@ -70,19 +75,20 @@ public class GuokrFragment extends Fragment implements GuokrContract.View{
                 }).show();
     }
     @Override
-    public void showResults(ArrayList<GuokrHandpickNews.result> list){
-        if(adapter == null){
-            adapter = new GuokrNewsAdapter(getContext(),list);
-            adapter.setItemClickListener(new OnRecyclerViewOnClickListener(){
+    public void showResults(ArrayList<GuokrHandpickNews.result> list) {
+        if (adapter == null) {
+            adapter = new GuokrNewsAdapter(getContext(), list);
+            adapter.setItemClickListener(new OnRecyclerViewOnClickListener() {
                 @Override
-                public void OnItemClick(View v, int position){
+                public void OnItemClick(View v, int position) {
                     presenter.startReading(position);
                 }
             });
             recyclerView.setAdapter(adapter);
-        }else{
-            adapter.notifyDataChanged();
+        } else {
+            adapter.notifyDataSetChanged();
         }
+
     }
     @Override
     public void showLoading(){refreshLayout.setRefreshing(true);}

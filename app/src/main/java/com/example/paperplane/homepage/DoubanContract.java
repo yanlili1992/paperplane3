@@ -1,13 +1,13 @@
 package com.example.paperplane.homepage;
 
+import com.example.paperplane.BasePresenter;
+import com.example.paperplane.BaseView;
 import com.example.paperplane.bean.DoubanMomentNews;
-import com.example.paperplane.util.BasePresenter;
-import com.example.paperplane.util.BaseView;
 
 import java.util.ArrayList;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public interface DoubanContract {
@@ -21,7 +21,7 @@ public interface DoubanContract {
         void showResults(ArrayList<DoubanMomentNews.posts> list);
 
     }
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
         void startReading(int position);
 
         void loadPosts(long date, boolean clearing);

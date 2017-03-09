@@ -9,14 +9,21 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.paperplane.R;
+import com.example.paperplane.customtabs.CustomFallback;
+import com.example.paperplane.customtabs.CustomTabActivityHelper;
+import com.example.paperplane.innerbrowser.InnerBrowserActivity;
+import com.example.paperplane.license.OpenSourceLicenseActivity;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class AboutPresenter implements AboutContract.Presenter{

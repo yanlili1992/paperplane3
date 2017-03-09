@@ -1,11 +1,12 @@
 package com.example.paperplane.bookmarks;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.media.MediaMetadataCompat;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertController;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,18 +14,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.paperplane.R;
+import com.example.paperplane.search.SearchActivity;
 import com.example.paperplane.adapter.BookmarksAdapter;
-import com.example.paperplane.bean.BeanType;
 import com.example.paperplane.bean.DoubanMomentNews;
 import com.example.paperplane.bean.GuokrHandpickNews;
 import com.example.paperplane.bean.ZhihuDailyNews;
 import com.example.paperplane.interfaze.OnRecyclerViewOnClickListener;
-import com.example.paperplane.search.SearchActivity;
+import com.example.paperplane.bean.BeanType;
 
 import java.util.ArrayList;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class BookmarksFragment extends Fragment implements BookmarksContract.View{
@@ -105,14 +107,14 @@ public class BookmarksFragment extends Fragment implements BookmarksContract.Vie
                         presenter.startReading(BeanType.TYPE_ZHIHU,position);
                     }else if(type == BookmarksAdapter.TYPE_GUOKR_NORMAL){
                         presenter.startReading(BeanType.TYPE_GUOKR,position);
-                    }else if(type == BookmarksAdapter.TYPE_DOUABN_NORMAL){
+                    }else if(type == BookmarksAdapter.TYPE_DOUBAN_NORMAL){
                         presenter.startReading(BeanType.TYPE_DOUBAN,position);
                     }
                 }
             });
             recyclerView.setAdapter(adapter);
         }else{
-            adapter.notifyDataChanged();
+            adapter.notifyDataSetChanged();
         }
     }
     @Override

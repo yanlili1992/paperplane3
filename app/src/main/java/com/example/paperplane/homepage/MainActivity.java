@@ -5,27 +5,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.ConnectivityManager;
-import android.support.v4.app.ActivityManagerCompat;
-import android.support.v4.app.FragmentTabHost;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.paperplane.R;
+import com.example.paperplane.about.AboutPreferenceActivity;
+import com.example.paperplane.bookmarks.BookmarksFragment;
+import com.example.paperplane.bookmarks.BookmarksPresenter;
 import com.example.paperplane.service.CacheService;
+import com.example.paperplane.settings.SettingsPreferenceActivity;
 
 import static android.R.id.toggle;
+
+/**
+ * Created by liyanli on 2017/3/8.
+ */
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             bookmarksFragment = (BookmarksFragment) getSupportFragmentManager().getFragment(savedInstanceState,"BookmarksFragment");
         }else{
             mainFragment = MainFragment.newInstance();
-            bookmarksFragment = BookmarrksFragment.newInstance();
+            bookmarksFragment = BookmarksFragment.newInstance();
         }
 
         if(!mainFragment.isAdded()){
@@ -86,12 +90,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
                 drawer,
-                "Open navigation drawer",
-                "Close navigation drawer"
-        );
+                toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -174,8 +178,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
         }else if(id==R.id.nav_settings){
             startActivity(new Intent(this,SettingsPreferenceActivity.class));
-        }else if(id==R.id.nav_about){
-            startActivity(new Intent(this,AboutPreferenceAvtivity.class));
+        }else if (id == R.id.nav_about) {
+            startActivity(new Intent(this,AboutPreferenceActivity.class));
         }
         return true;
     }
@@ -187,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //存储Fragment的状态
     @Override
-    protected void onSavedInstanceState(Bundle outState){
+    protected void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         if(mainFragment.isAdded()){
             getSupportFragmentManager().putFragment(outState,"MainFragment",mainFragment);

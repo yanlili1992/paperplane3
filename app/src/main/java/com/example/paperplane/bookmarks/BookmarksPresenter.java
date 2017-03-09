@@ -1,27 +1,32 @@
 package com.example.paperplane.bookmarks;
 
+
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ProviderInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.paperplane.about.AboutContract;
+import com.google.gson.Gson;
 import com.example.paperplane.adapter.BookmarksAdapter;
-import com.example.paperplane.bean.BeanType;
 import com.example.paperplane.bean.DoubanMomentNews;
 import com.example.paperplane.bean.GuokrHandpickNews;
 import com.example.paperplane.bean.ZhihuDailyNews;
 import com.example.paperplane.db.DatabaseHelper;
 import com.example.paperplane.detail.DetailActivity;
-import com.example.paperplane.util.BasePresenter;
-import com.example.paperplane.util.BaseView;
+import com.example.paperplane.bean.BeanType;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_DOUBAN_NORMAL;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_DOUBAN_WITH_HEADER;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_GUOKR_NORMAL;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_GUOKR_WITH_HEADER;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_ZHIHU_NORMAL;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_ZHIHU_WITH_HEADER;
+
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class BookmarksPresenter implements BookmarksContract.Presenter{
@@ -37,14 +42,14 @@ public class BookmarksPresenter implements BookmarksContract.Presenter{
     private ArrayList<Integer> types;
 
     private DatabaseHelper dbHelper;
-    private SQLiteDatabasedb;
+    private SQLiteDatabase db;
 
     public BookmarksPresenter(Context context, BookmarksContract.View view){
         this.context = context;
         this.view = view;
         this.view.setPresenter(this);
         gson = new Gson();
-        dbHelper = new DatabaseHelper(context,"History.db",null 5);
+        dbHelper = new DatabaseHelper(context,"History.db",null, 5);
         db = dbHelper.getWritableDatabase();
 
         zhihuList = new ArrayList<>();

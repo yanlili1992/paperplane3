@@ -1,10 +1,11 @@
 package com.example.paperplane.homepage;
 
-import android.app.ActionBar;
-import android.app.Fragment;
-import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -13,15 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.TableLayout;
 
 import com.example.paperplane.R;
+import com.example.paperplane.adapter.MainPagerAdapter;
 
 import java.util.Random;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class MainFragment extends Fragment {
@@ -31,13 +31,13 @@ public class MainFragment extends Fragment {
 
     private TabLayout tabLayout;
 
-    private ZhiuhDailyFragment zhihuDailyFragment;
+    private ZhihuDailyFragment zhihuDailyFragment;
     private GuokrFragment guokrFragment;
     private DoubanFragment doubanFragment;
 
-    private ZhihuDailyPrsenter zhihuDailyPrsenter;
+    private ZhihuDailyPresenter zhihuDailyPrsenter;
     private GuokrPresenter guokrPresenter;
-    private DoubanMomentPresenter doubanMomentPresenter;
+    private DoubanPresenter doubanPresenter;
 
     public MainFragment(){};
 
@@ -55,6 +55,7 @@ public class MainFragment extends Fragment {
         super.onCreate(savedInstanceState);
         this.context = getActivity();
         if(savedInstanceState!=null){
+            FragmentManager manager = getChildFragmentManager();
             zhihuDailyFragment = (ZhihuDailyFragment) manager.getFragment(
                     savedInstanceState,"zhihu");
             guokrFragment = (GuokrFragment) getFragmentManager().getFragment(
@@ -115,9 +116,11 @@ public class MainFragment extends Fragment {
                 context,
                 zhihuDailyFragment,
                 guokrFragment,
-                doubanFragment
-        );
-        viewPager.setAdapter(adapter);]
+                doubanFragment);
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -137,8 +140,8 @@ public class MainFragment extends Fragment {
         return true;
     }
 
-    @Override
-    public void onSavedInstanceState(Bundle outState){
+
+    public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         FragmentManager manager = getChildFragmentManager();
         manager.putFragment(outState,"zhihu",zhihuDailyFragment);
@@ -146,7 +149,7 @@ public class MainFragment extends Fragment {
         manager.putFragment(outState,"douabn",doubanFragment);
     }
 
-    @Override
+
     public void feelLucky(){
         Random random = new Random();
         int type = random.nextInt(3);
@@ -158,13 +161,13 @@ public class MainFragment extends Fragment {
                 guokrPresenter.feelLucky();
                 break;
            default:
-                doubanMomentPresenter.feelLucky();
+                doubanPresenter.feelLucky();
                 break;
 
         }
     }
 
-    public MainPagerAdaptr getAdapter(){
+    public MainPagerAdapter getAdapter(){
         return adapter;
     }
 

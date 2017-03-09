@@ -2,17 +2,25 @@ package com.example.paperplane.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import com.example.paperplane.R;
+import com.example.paperplane.bean.DoubanMomentNews;
+import com.example.paperplane.interfaze.OnRecyclerViewOnClickListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class DoubanMomentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{

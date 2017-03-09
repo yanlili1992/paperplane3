@@ -29,6 +29,7 @@ import com.example.paperplane.interfaze.OnStringListener;
 import com.example.paperplane.util.Api;
 import com.example.paperplane.bean.BeanType;
 import com.example.paperplane.util.NetworkState;
+import com.example.paperplane.R;
 
 import java.util.ArrayList;
 
@@ -36,11 +37,11 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class detailPresenter implements detailContract.Presenter{
-    private DetailContract.View view;
+    private detailContract.View view;
     private StringModelImpl model;
     private Context context;
 

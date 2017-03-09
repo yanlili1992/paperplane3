@@ -9,12 +9,22 @@ import com.example.paperplane.bean.BeanType;
 import com.example.paperplane.bean.DoubanMomentNews;
 import com.example.paperplane.bean.GuokrHandpickNews;
 import com.example.paperplane.bean.ZhihuDailyNews;
+import com.example.paperplane.db.DatabaseHelper;
 import com.example.paperplane.detail.DetailActivity;
+import com.google.gson.Gson;
+
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_DOUBAN_NORMAL;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_DOUBAN_WITH_HEADER;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_GUOKR_NORMAL;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_GUOKR_WITH_HEADER;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_ZHIHU_NORMAL;
+import static com.example.paperplane.adapter.BookmarksAdapter.TYPE_ZHIHU_WITH_HEADER;
+
 
 import java.util.ArrayList;
 
 /**
- * Created by liuht on 2017/3/6.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class SearchPresenter implements SearchContract.Presenter{

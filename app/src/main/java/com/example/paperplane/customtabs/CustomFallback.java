@@ -7,7 +7,7 @@ import android.net.Uri;
 import com.example.paperplane.innerbrowser.InnerBrowserActivity;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class CustomFallback implements CustomTabActivityHelper.CustomTabFallback{

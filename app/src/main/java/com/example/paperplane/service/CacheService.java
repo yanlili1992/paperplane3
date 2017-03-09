@@ -1,5 +1,4 @@
 package com.example.paperplane.service;
-
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
@@ -13,12 +12,20 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.example.paperplane.app.VolleySingleton;
+import com.example.paperplane.bean.ZhihuDailyStory;
 import com.example.paperplane.db.DatabaseHelper;
+import com.example.paperplane.util.Api;
 
 import java.util.Calendar;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class CacheService extends Service {

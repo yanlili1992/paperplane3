@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.paperplane.R;
-
 /**
- * Created by liuht on 2017/3/6.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class SearchActivity extends AppCompatActivity{

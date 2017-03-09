@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.example.paperplane.R;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class AboutPreferenceActivity extends AppCompatActivity{

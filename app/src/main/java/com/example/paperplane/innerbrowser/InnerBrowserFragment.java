@@ -1,11 +1,10 @@
 package com.example.paperplane.innerbrowser;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -26,9 +25,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.paperplane.util.NetworkState;
+import com.example.paperplane.R;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class InnerBrowserFragment extends Fragment{
@@ -137,7 +137,7 @@ public class InnerBrowserFragment extends Fragment{
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        inflater.inflate(R.menu.menu_broswer,menu);
+        inflater.inflate(R.menu.menu_browser,menu);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

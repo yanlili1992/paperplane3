@@ -6,10 +6,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.Preference;
 
+import com.bumptech.glide.Glide;
+import com.example.paperplane.R;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class SettingsPresenter implements SettingsContract.Presenter{

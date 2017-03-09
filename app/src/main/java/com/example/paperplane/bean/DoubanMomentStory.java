@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class DoubanMomentStory {

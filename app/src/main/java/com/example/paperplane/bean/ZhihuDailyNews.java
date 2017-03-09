@@ -3,7 +3,7 @@ package com.example.paperplane.bean;
 import java.util.ArrayList;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class ZhihuDailyNews {

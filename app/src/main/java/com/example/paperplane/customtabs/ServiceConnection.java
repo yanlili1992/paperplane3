@@ -1,14 +1,16 @@
 package com.example.paperplane.customtabs;
 
+import android.support.customtabs.CustomTabsServiceConnection;
 import android.content.ComponentName;
+import android.support.customtabs.CustomTabsClient;
 
 import java.lang.ref.WeakReference;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
-public class ServiceConnection extends CustomTabsSrviceConnection{
+public class ServiceConnection extends CustomTabsServiceConnection{
 
     // A weak reference to the ServiceConnectionCallback to avoid leaking it.
     private WeakReference<ServiceConnectionCallback> mConnectionCallback;

@@ -1,12 +1,15 @@
 package com.example.paperplane.adapter;
 
 import android.content.Context;
-import android.media.Image;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import com.example.paperplane.R;
 import com.example.paperplane.bean.ZhihuDailyNews;
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class ZhihuDailyNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -53,7 +56,7 @@ public class ZhihuDailyNewsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             if(item.getImages().get(0)==null){
                 ((NormalViewHolder)holder).itemImg.setImageResource(R.drawable.placeholder);
             }else{
-                Glide.with(contaxt)
+                Glide.with(context)
                         .load(item.getImages().get(0))
                         .asBitmap()
                         .placeholder(R.drawable.placeholder)

@@ -2,12 +2,11 @@ package com.example.paperplane.detail;
 
 import android.webkit.WebView;
 
-import com.example.paperplane.homepage.ZhihuDailyContract;
-import com.example.paperplane.util.BasePresenter;
-import com.example.paperplane.util.BaseView;
+import com.example.paperplane.BasePresenter;
+import com.example.paperplane.BaseView;
 
 /**
- * Created by liuht on 2017/3/7.
+ * Created by liyanli on 2017/3/7.
  */
 
 public class detailContract {
@@ -16,7 +15,7 @@ public class detailContract {
         void showLoading();
         void stopLoading();
         void showLoadingError();
-        void showSharignError();
+        void showSharingError();
         void showResult(String result);
         void showResultWithoutBody(String url);
         void showCover(String url);

@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.example.paperplane.R;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class SettingsPreferenceActivity extends AppCompatActivity{

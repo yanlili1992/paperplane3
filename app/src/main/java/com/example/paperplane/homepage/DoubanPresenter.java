@@ -3,7 +3,6 @@ package com.example.paperplane.homepage;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.LocalBroadcastManager;
@@ -18,15 +17,19 @@ import com.example.paperplane.service.CacheService;
 import com.example.paperplane.util.Api;
 import com.example.paperplane.util.DateFormatter;
 import com.example.paperplane.util.NetworkState;
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
- * Created by liuht on 2017/3/8.
+ * Created by liyanli on 2017/3/8.
  */
 
 public class DoubanPresenter implements DoubanContract.Presenter{
@@ -123,7 +126,7 @@ public class DoubanPresenter implements DoubanContract.Presenter{
                 Cursor cursor = db.query("Douban",null,null,null,null,null,null);
                 if(cursor.moveToFirst()){
                     do{
-                        DoubanMomentNews.posts post = gson.fromJson(cursor.getString(cursor.getColumnIndex("douban_news")),DoubanMomentNews.class);
+                        DoubanMomentNews.posts post = gson.fromJson(cursor.getString(cursor.getColumnIndex("douban_news")), DoubanMomentNews.posts.class);
                         list.add(post);
                     }while ((cursor.moveToNext()));
                 }
@@ -134,7 +137,7 @@ public class DoubanPresenter implements DoubanContract.Presenter{
         }
     }
     @Override
-    public void refresh(){loadPosts((Calendar.getInstance().getTimeInMillis(),true));}
+    public void refresh(){loadPosts((Calendar.getInstance().getTimeInMillis()),true);}
     @Override
     public void loadMore(long date){loadPosts(date,false);}
     @Override
