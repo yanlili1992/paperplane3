@@ -7,9 +7,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.example.paperplane.bean.StringModelImpl;
+import com.example.paperplane.bean.ZhihuDailyNews;
+import com.example.paperplane.db.DatabaseHelper;
+import com.example.paperplane.detail.DetailActivity;
 import com.example.paperplane.interfaze.OnStringListener;
 import com.example.paperplane.service.CacheService;
 import com.example.paperplane.util.Api;
+import com.example.paperplane.bean.BeanType;
 import com.example.paperplane.util.DateFormatter;
 import com.example.paperplane.util.NetworkState;
 
@@ -23,7 +31,7 @@ import java.util.Date;
 import java.util.Random;
 
 import static android.R.attr.cropToPadding;
-import static android.R.attr.format;
+//import static android.R.attr.format;
 
 /**
  * Created by liuht on 2017/3/6.
@@ -58,7 +66,7 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter{
             view.showLoading();
         }
         if(NetworkState.networkConnected(context)) {
-            model.load(Api.ZHIHU_HISTORY + foramtter.ZhihuDailyDateFormat(date), new OnStringListener() {
+            model.load(Api.ZHIHU_HISTORY + formatter.ZhihuDailyDateFormat(date), new OnStringListener() {
                 @Override
                 public void onSuccess(String result) {
                     try {
@@ -74,7 +82,7 @@ public class ZhihuDailyPresenter implements ZhihuDailyContract.Presenter{
                             if (!queryIfIDExists(item.getId())) {
                                 db.beginTransaction();
                                 try {
-                                    DateFormat foramt = new SimpleDateFormat("yyyNNdd");
+                                    DateFormat format = new SimpleDateFormat("yyyNNdd");
                                     Date date = format.parse(post.getDate());
                                     values.put("zhihu_id", item.getId());
                                     values.put("zhihu_news", gson.toJson(item));

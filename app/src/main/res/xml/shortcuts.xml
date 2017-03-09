@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright 2017 lizhaotailang
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
+
 
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -26,8 +12,8 @@
 
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetPackage="com.marktony.zhihudaily"
-            android:targetClass="com.marktony.zhihudaily.search.SearchActivity" />
+            android:targetPackage="com.example.paperplane"
+            android:targetClass="com.example.paperplane.search.SearchActivity" />
 
         <categories android:name="android.shortcut.conversation" />
 
@@ -43,9 +29,9 @@
         <!--set a custom intent action string as a unique id
        which activity can point out which fragment to launch-->
         <intent
-            android:action="com.marktony.zhihudaily.homepage"
-            android:targetPackage="com.marktony.zhihudaily"
-            android:targetClass="com.marktony.zhihudaily.homepage.MainActivity" />
+            android:action="com.example.paperplane.homepage"
+            android:targetPackage="com.example.paperplane"
+            android:targetClass="com.example.paperplane.homepage.MainActivity" />
 
         <categories android:name="android.shortcut.conversation" />
 
@@ -59,9 +45,9 @@
         android:shortcutLongLabel="@string/check_bookmarks">
 
         <intent
-            android:action="com.marktony.zhihudaily.bookmarks"
-            android:targetPackage="com.marktony.zhihudaily"
-            android:targetClass="com.marktony.zhihudaily.homepage.MainActivity" />
+            android:action="com.example.paperplane.bookmarks"
+            android:targetPackage="com.example.paperplane"
+            android:targetClass="com.example.paperplane.homepage.MainActivity" />
 
         <categories android:name="android.shortcut.conversation" />
 
